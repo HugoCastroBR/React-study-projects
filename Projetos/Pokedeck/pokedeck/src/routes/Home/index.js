@@ -4,6 +4,7 @@ import styled  from 'styled-components';
 import Theme from './../../containers/ThemeManager';
 import PokeInfo from './../../components/PokeInfo/index';
 import PokesList from '../../components/PokesList';
+import PokemonProvider, { PokemonContext } from './../../contexts/pokemon';
 
 
 const HomeMainContainer = styled.main`
@@ -49,7 +50,7 @@ class Home extends Component {
         return ( 
         
         
-        <Fragment>
+        <PokemonProvider>
             <Header/>
             <HomeMainContainer>
                 <HomeContainer>
@@ -60,9 +61,11 @@ class Home extends Component {
                     <PokesList/>
                     
                 </HomeContainer>
-                <PokeInfo size={[false,'20vw']}/>
+                <PokeInfo size={[false,'20vw']}>
+                    
+                </PokeInfo>
             </HomeMainContainer>
-        </Fragment>
+        </PokemonProvider>
         
         );
     }
