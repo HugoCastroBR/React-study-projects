@@ -9,6 +9,7 @@ function Routes(){
         <BrowserRouter>
             <Switch>
                 <Route path='/' render={props => <Home/>} exact/>
+                <Route path='/home' render={props => <Home/>} exact/>
             </Switch>
         </BrowserRouter>
     )

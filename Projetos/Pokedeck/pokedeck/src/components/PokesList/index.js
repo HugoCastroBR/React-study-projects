@@ -16,17 +16,14 @@ const PokesItemContainer = styled.div`
 class PokesList extends Component {
     state = {pokes: []}
     
-
     componentDidMount(){
         let Self = this
-
         async function getPokes(){
             const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
             const Solved = await res.json()
             Self.setState({
                 pokes: Solved.results
             })
-
         }
         getPokes()
     }
