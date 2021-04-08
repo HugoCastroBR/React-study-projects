@@ -27,7 +27,7 @@ const SeeMore = styled.button`
 `
 
 class PokesList extends Component {
-    limit = 1
+    limit = 1000
     state = {pokes: []}
     
     componentDidMount(){

@@ -3,6 +3,7 @@ import Theme from "./../../containers/ThemeManager";
 import styled from "styled-components";
 import { usePokemon } from './../../contexts/pokemon';
 
+
 const PokeStyle = styled.div`
     width: 300px;
     height: 400px;
@@ -54,8 +55,10 @@ const PokeImageContainer = styled.div`
 
 
 
+
+
 function Poke(props) {
-    let { setPokemon} = usePokemon()
+    let { setPokemon } = usePokemon()
     
     const handlerPokemon = (pokemon = false) => {
 

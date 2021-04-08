@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import Poke from "../poke/poke";
 
-import { usePokemon } from './../../contexts/pokemon';
 
 
 
