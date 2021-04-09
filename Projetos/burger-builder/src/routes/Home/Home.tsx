@@ -1,8 +1,8 @@
 import React from 'react';
 import styled  from 'styled-components';
-import Page from './../../containers/Page';
+import Page from '../../components/Page';
 import Builder from './../../containers/Builder';
-import BuilderMenu from '../../containers/BuilderMenu';
+import BuilderMenu from '../../components/BuilderMenu';
 
 
 

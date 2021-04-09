@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled  from 'styled-components';
-import IngredientsData from './../components/Ingredients/Ingredients';
-import ListIngredients from './../components/IngredientOptions/ListIngredients';
-import ManageIngredient from './../components/IngredientOptions/ManageIngredient';
-import { useIngredients } from './../contexts/CurrentIngredients';
+import IngredientsData from './Ingredients/Ingredients';
+import ListIngredients from './IngredientOptions/ListIngredients';
+import ManageIngredient from '../containers/ManageIngredient';
+
 
 
 const BuilderMenuStyle = styled.div`
@@ -11,22 +11,11 @@ const BuilderMenuStyle = styled.div`
     display: flex;
     flex-direction: column;
     width: 600px;
-    
     min-height: 10px; // remover
 `
 
 
-
-
-
-
-
 const BuilderMenu:React.FC = () =>{
-
-    let { ingredients, setIngredients } = useIngredients()
-
-
-
     return(
         <BuilderMenuStyle>
             <ListIngredients>
@@ -34,7 +23,6 @@ const BuilderMenu:React.FC = () =>{
                 return(
                     <ManageIngredient {...element} key={index}/>
                 )
-                
             })}
             </ListIngredients>
         </BuilderMenuStyle>

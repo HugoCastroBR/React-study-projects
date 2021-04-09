@@ -1,14 +1,10 @@
 
 import * as React from 'react';
 import styled  from 'styled-components';
-import { useIngredients } from './../../contexts/CurrentIngredients';
-import IngredientsData from './../Ingredients/Ingredients';
-interface IingredientData{
-    name: string,
-    color: string,
-    width?: number,
-    height?: number
-}
+import { useIngredients } from '../contexts/CurrentIngredients';
+import { IingredientData } from '../interfaces';
+
+
 
 
 const IngredientOptions = styled.div`
@@ -31,6 +27,7 @@ const IngredientManageCount = styled.div`
         border: none;
         width: 20px;
         height: 20px;
+        cursor: pointer;
     }
 `
 
@@ -43,30 +40,43 @@ const ManageIngredient = (ingredient:IingredientData) =>{
 
     
 
-    const HandlerIngredient = (ingredient:string) => {
-        console.log(ingredient)
-        // console.log(IngredientsData.filter(element => element.name == ingredient))
-        
+    const HandlerIngredient = (ingredient:string, add:boolean) => {
+        let operator:number = -1;
+        if(add){
+            operator = 1
+        }
         if(ingredients){
-            let countNumber = 0
             let exist = false
             const newIngredients = ingredients.map((element,index) => {
-                if(element?.ingredient == ingredient){
+                if(element?.ingredient === ingredient){
                     exist = true
-                    return {ingredient: element.ingredient,count: element.count + 1}
+                    if(element.count === 0 && !add){
+                        return element
+                    }
+                    return {ingredient: element.ingredient,count: element.count + (1 * operator)}
                 }else{
                     return element
                 }
             })
-            if(!exist){
+            if(!exist && add){
                 setIngredients([...ingredients,{
                     "ingredient":ingredient,
-                    "count": countNumber
+                    "count": 1
                 }])
+                
             }else{
                 setIngredients(newIngredients)
+                
             }
             
+        }
+        else if(add){
+            setIngredients([{
+                "ingredient":ingredient,
+                "count": 1
+                
+            }])
+            console.log("isso")
         }
         else{
             setIngredients([{
@@ -74,7 +84,13 @@ const ManageIngredient = (ingredient:IingredientData) =>{
                 "count": 0
             }])
         }
-        console.log(ingredients)
+
+    }
+
+    function getCount(ingredient:string){
+        const new_ingredient = ingredients?.filter(element => element.ingredient === ingredient)
+        
+        return new_ingredient && new_ingredient[0]?.count
     }
 
     return(
@@ -85,14 +101,18 @@ const ManageIngredient = (ingredient:IingredientData) =>{
             <IngredientManageCount>
                 <button
                 onClick={
-                    () => HandlerIngredient(ingredient?.name)
+                    () => HandlerIngredient(ingredient?.name,false)
                 }
                 >-</button>
                 <span>{
-                    ingredients?.filter(element => element.ingredient == ingredient?.name)
+                    getCount(ingredient?.name) ? getCount(ingredient?.name) : 0
                 }
                 </span>
-                <button>+</button>
+                <button
+                    onClick={
+                        () => HandlerIngredient(ingredient?.name,true)
+                    }
+                >+</button>
             </IngredientManageCount>
         </IngredientOptions>
     )

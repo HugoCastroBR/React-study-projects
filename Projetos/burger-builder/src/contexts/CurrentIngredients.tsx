@@ -1,24 +1,13 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react'
-import IngredientsData from './../components/Ingredients/Ingredients';
+import {
+    IcurrentIngredients,
+} from '../interfaces';
+import {
+    ContextValue,
+} from '../types';
 
 
-
-interface IcurrentIngredients{
-    ingredient: Object,
-    count: number
-}
-
-
-
-type ContextValue = {
-    ingredients: IcurrentIngredients[],
-    setIngredients: (value : any) => void;
-}
-
-export const ingredientsContext = createContext<ContextValue>({
-    ingredients:[{ingredient:{},count:0}],
-    setIngredients: ingredients => console.log("error")
-})
+export const ingredientsContext = createContext<ContextValue>({} as ContextValue)
 
 type Props = {
     children: ReactNode
@@ -32,7 +21,7 @@ export default function IngredientsProvider(props: Props){
     }
     return(
         <ingredientsContext.Provider
-        value={value as any}
+        value={value as ContextValue}
         >
             {props.children}
         </ingredientsContext.Provider>

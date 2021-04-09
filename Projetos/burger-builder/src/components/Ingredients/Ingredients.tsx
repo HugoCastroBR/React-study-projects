@@ -1,20 +1,16 @@
-import * as React from 'react';
+
+import { IingredientData } from '../../interfaces';
 
 
 
-interface IingredientData{
-    name: string,
-    color: string,
-    width?: number,
-    height?: number
-}
+
 
 let IngredientsData:IingredientData[] = [
     {
         name: "Tomato",
         color: "red",
         width: 100,
-        height: 40
+        height: 20
     },
     {
         name: "Alface",
@@ -23,22 +19,23 @@ let IngredientsData:IingredientData[] = [
         height: 30
     },
     {
-        name: "Meat",
-        color: "brown",
-        width: 100,
-        height: 50
-    },
-    {
         name: "Cheese",
         color: "yellow",
         width: 100,
         height: 20
+    },
+    {
+        name: "Meat",
+        color: "brown",
+        width: 100,
+        height: 40
     }
+    
 ];
 
-function CreateIngredient(IngredientData:IingredientData){
-    IngredientsData.push(IngredientData)
-}
+// function CreateIngredient(IngredientData:IingredientData){
+//     IngredientsData.push(IngredientData)
+// }
 
 
 
