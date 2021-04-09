@@ -1,5 +1,6 @@
 import React from 'react';
 import styled  from 'styled-components';
+import IngredientsProvider from '../contexts/CurrentIngredients';
 
 
 const MainPageContainer = styled.main`
@@ -12,7 +13,9 @@ const MainPageContainer = styled.main`
 const Page: React.FC = ({children}) =>{
     return(
         <MainPageContainer>
-            {children}
+            <IngredientsProvider>
+                {children}
+            </IngredientsProvider>
         </MainPageContainer>
     )
 }

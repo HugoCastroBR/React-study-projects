@@ -3,6 +3,7 @@ import styled  from 'styled-components';
 import IngredientsData from './../components/Ingredients/Ingredients';
 import ListIngredients from './../components/IngredientOptions/ListIngredients';
 import ManageIngredient from './../components/IngredientOptions/ManageIngredient';
+import { useIngredients } from './../contexts/CurrentIngredients';
 
 
 const BuilderMenuStyle = styled.div`
@@ -10,27 +11,30 @@ const BuilderMenuStyle = styled.div`
     display: flex;
     flex-direction: column;
     width: 600px;
-    background-color: #da9f67;
+    
     min-height: 10px; // remover
 `
 
 
 
-interface IcurrentIngredients{
-    "ingredient" : Object,
-    "count": number
-}
+
+
+
 
 const BuilderMenu:React.FC = () =>{
-    const[currentIngredients, setCurrentIngredients] = useState<IcurrentIngredients | undefined>(undefined);
+
+    let { ingredients, setIngredients } = useIngredients()
+
+
 
     return(
         <BuilderMenuStyle>
             <ListIngredients>
-            {IngredientsData.map(element => {
+            {IngredientsData.map((element,index) => {
                 return(
-                    <ManageIngredient ingredient={element}/>
+                    <ManageIngredient {...element} key={index}/>
                 )
+                
             })}
             </ListIngredients>
         </BuilderMenuStyle>
