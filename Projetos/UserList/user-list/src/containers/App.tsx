@@ -3,8 +3,8 @@ import "../assets/css/App.css";
 import styled from 'styled-components'
 import AddUserForm from "./AddUserForm";
 import ListUsers from "./ListUsers";
-import ErrorModal from './../components/ErrorModal';
-
+import ErrorModal from './ErrorModal';
+import { UserInfos } from './../ts/interfaces';
 
 const Page = styled.main`
 	width: 100vw;
@@ -16,20 +16,16 @@ const Page = styled.main`
 	padding-top: 35vh;
 `
 
-interface UserInfos{
-    name: string,
-    age: number
-}
+
 
 const App:React.FC = () => {
+	
 
 	const [users , setUsers] = useState([] as UserInfos[])
 	const [error, setError] = useState("" as string)
 
 	const HandlerUsers = (newUser:UserInfos) => {
-		console.log(newUser)
 		const newUsers = [...users,newUser]
-		console.log(newUsers)
 		setUsers(newUsers)
 	}
 
@@ -37,11 +33,18 @@ const App:React.FC = () => {
 		setError(msg)
 	}
 
+	const HandlerRemove = (index: number) => {
+		const newUsers = [...users]
+		newUsers.splice(index,1);
+		setUsers(newUsers)
+		
+	}
+
 	return(
 		<Page>
 			{error && <ErrorModal ErrorMsg={error} HandlerError={HandlerError}/>}
 			<AddUserForm HandlerUsers={HandlerUsers} HandlerError={HandlerError}/>
-			<ListUsers users={users}/>
+			{users[0] && <ListUsers users={users} HandlerRemove={HandlerRemove}/>}
 		</Page>
 	)
 }

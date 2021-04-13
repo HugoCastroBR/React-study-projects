@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import styled from 'styled-components'
 import ItemContainer from '../components/ItemContainer';
-
+import { UserInfos } from './../ts/interfaces';
 
 
 const AddUserFormStyle = styled.form`
@@ -42,10 +42,8 @@ const AddUserFormStyle = styled.form`
     }
 `
 
-interface UserInfos{
-    name: string,
-    age: number
-}
+
+
 
 interface IProps{
     HandlerUsers: (newUser:UserInfos) => void;
@@ -54,17 +52,18 @@ interface IProps{
 
 
 const AddUserForm:React.FC<IProps> = ({HandlerUsers,HandlerError}) => {
+    
     const [currentUser, setCurrentUser] = useState({
         name: "",
         age: 0
     } as UserInfos)
-    const HandleChangeAge = (event: Object) => {
+    const HandleChangeAge = (event: any) => {
         setCurrentUser({
             name: currentUser.name,
             age: event.target.value
         })
     }
-    const HandleChangeName = (event: Object) => {
+    const HandleChangeName = (event: any) => {
         setCurrentUser({
             name: event.target.value,
             age: currentUser.age

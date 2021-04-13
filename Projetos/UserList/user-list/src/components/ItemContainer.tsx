@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components'
 
 
-
-
-
 const ItemContainerStyle = styled.div`
     background-color: white;
     height: auto;
