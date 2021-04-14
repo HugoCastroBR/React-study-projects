@@ -4,7 +4,7 @@ export type TFood = {
 };
 
 export type TcartItem = {
-    food: TFood;
+    food: string;
     count: number;
 };
 

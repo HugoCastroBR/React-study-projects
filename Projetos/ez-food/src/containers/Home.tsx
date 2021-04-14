@@ -16,17 +16,11 @@ const Home = () => {
         event.preventDefault()
         dispatch({type:"Cart-Clean", payload:"oi"})
     }
-    
-    function HandlerChange ( event:any){
+
+    function HandlerChange (element:string,event:any){
         event.preventDefault()
-        
-        dispatch({type:"Cart-Add-Item", payload:{
-            food:{
-                name:"arroz",
-                price:10
-            },
-            count:1
-        }})
+        const payload = `{"${element}":1}`
+        dispatch({type:"Cart-Add-Item", payload:JSON.parse(payload)})
     }
 
     return(
@@ -40,9 +34,14 @@ const Home = () => {
                 >Print</button>
                 <button
                     onClick={
-                        HandlerChange
+                        (event) => HandlerChange('Arroz',event)
                     }
-                >Change</button>
+                >AAAA</button>
+                <button
+                    onClick={
+                        (event) => HandlerChange('Feijao',event)
+                    }
+                >FFFF</button>
             </main>
         </Fragment>
     )

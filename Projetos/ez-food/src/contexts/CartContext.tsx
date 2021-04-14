@@ -1,11 +1,12 @@
 import React, { createContext, ReactNode,useContext, useReducer, useState } from 'react'
 import { TcartItem } from '../ts/types';
+import reducer from './../reducers/CartReducer';
 
 
 
 
 interface IStates{
-    Cart: TcartItem[]
+    Cart: any[]
     Error: string
 }
 interface Icontext{
@@ -16,40 +17,13 @@ interface Icontext{
 export const CartContext = createContext<Icontext>({} as Icontext)
 
 
-
-
 const INITIAL_STATE = {
     Cart: [],
     Error: ''
 }
 
-function reducer(state:any, action:any){
-    const newState = {...state}
-
-    console.log(action,state)
-
-    switch(action.type){
-        case 'Cart-Clean':
-            newState.Cart = []
-            return newState
-
-        case 'Cart-Add-Item':
-            const newItem = action.payload
-            newState.Cart = [...newState.Cart,newItem]
-            return newState
-
-        default:
-            return newState
-    }
-
-}
 
 const CartProvider:React.FC = ({children}) =>{
-    // const [Cart , setCart ] = useState<TcartItem[] | null>(null)
-    // const value = {
-    //     Cart,
-    //     setCart
-    // }
 
     const [states, dispatch] = useReducer(reducer,INITIAL_STATE)
 
