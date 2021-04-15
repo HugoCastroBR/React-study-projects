@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import * as React from 'react';
 import { ReactComponent as CartIcon } from'../assets/img/shopping-cart.svg'
+import { useCart } from './../contexts/CartContext';
 
 const HeaderContainer = styled.header`
     width: 60vw;
@@ -24,6 +25,7 @@ const HeaderContainer = styled.header`
         color: white;
         font-size: 18px;
         cursor: pointer;
+        border: 1px solid white;
     }
 `
 
@@ -31,13 +33,19 @@ const CartIconStyled = styled(CartIcon)`
     width: 25px;
 ` 
 
-
-
 const Header = () => {
+
+    const {dispatch} = useCart()
+
+    const CartModalToggle = (event:any) => {
+        event.preventDefault()
+        dispatch({type:'Toggle-Cart-Modal'})
+    }
+
     return(
         <HeaderContainer>
             <h1>Ez-Food</h1>
-            <button>
+            <button onClick={CartModalToggle}>
                 <CartIconStyled fill="white"/>
                 {/* <img src={CartIcon} alt=""/> */}
                 <span>Your Cart</span>

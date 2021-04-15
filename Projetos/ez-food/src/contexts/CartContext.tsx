@@ -1,13 +1,15 @@
-import React, { createContext, ReactNode,useContext, useReducer, useState } from 'react'
-import { TcartItem } from '../ts/types';
+import React, { createContext,useContext, useReducer } from 'react'
 import reducer from './../reducers/CartReducer';
 
 
 
 
+
 interface IStates{
-    Cart: any[]
-    Error: string
+    Cart: any[];
+    Error: string;
+    CartModal: boolean;
+    
 }
 interface Icontext{
     states: IStates,
@@ -19,7 +21,8 @@ export const CartContext = createContext<Icontext>({} as Icontext)
 
 const INITIAL_STATE = {
     Cart: [],
-    Error: ''
+    Error: '',
+    CartModal: false
 }
 
 
