@@ -4,7 +4,8 @@ import { TFood } from "./types";
 const foods:TFood[] = [
     {
         name:"Cheese Burger",
-        price: 8.00
+        price: 8.00,
+        description: "Eita"
     },
     {
         name:"X Burger",
@@ -16,7 +17,8 @@ const foods:TFood[] = [
     },
     {
         name:"Gods Burger",
-        price: 12.00
+        price: 12.00,
+        description: "God cry"
     },
     {
         name:"Double X Burger",

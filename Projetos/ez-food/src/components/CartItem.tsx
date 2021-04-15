@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
+import { TFood } from "../ts/types";
 
 
 const ModalCartItem = styled.div`
@@ -84,18 +85,18 @@ const ItemCountOptions = styled.div`
 
 interface Iprops{
     amount: number;
-    food: string;
     addItemCart: (element:string,event:any,amount?:number) => void
+    About: TFood;
 }
 
-const CartItem:React.FC<Iprops> = ({amount,food,addItemCart}) => {
+const CartItem:React.FC<Iprops> = ({amount,addItemCart,About}) => {
 
 	return(
         <ModalCartItem>
             <ItemMainOptions>
-                <h3>{food}</h3>
+                <h3>{About.name}</h3>
                 <div>
-                    <span>16.50</span>
+                    <span>{About.price.toFixed(2)}</span>
                     <input type="text" value={amount} onChange={
                         (event) => {
                             console.log(event.target.value)
@@ -104,9 +105,9 @@ const CartItem:React.FC<Iprops> = ({amount,food,addItemCart}) => {
                 </div>
             </ItemMainOptions>
             <ItemCountOptions>
-                <button  onClick={(event) => addItemCart(food,event,-1)}>-</button>
+                <button  onClick={(event) => addItemCart(About.name,event,-1)}>-</button>
                 <button
-                onClick={(event) => addItemCart(food,event)}
+                onClick={(event) => addItemCart(About.name,event)}
                 >+</button>
             </ItemCountOptions>
 	    </ModalCartItem>

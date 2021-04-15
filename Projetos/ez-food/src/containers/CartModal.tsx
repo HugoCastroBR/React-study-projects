@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { useCart } from './../contexts/CartContext';
 import CartItem from './../components/CartItem';
+import getAboutTheFood from './../assets/functions/getAboutThefood';
 
 
 
@@ -14,6 +15,7 @@ const ModalContainer = styled.div`
     backdrop-filter: blur(2px);
     align-items: center;
     justify-content: center;
+    z-index: 3;
 `
 
 
@@ -25,8 +27,6 @@ const ModalItemsContainer = styled.div`
     padding: 20px;
     border-radius: 15px;
 `
-
-
 
 
 
@@ -107,6 +107,35 @@ const CartModal = () => {
         dispatch({type:"Cart-Add-Item", payload:JSON.parse(payload)})
     }
 
+    
+
+    function CalcTotal(){
+        let Cart = [...states.Cart]
+        let value:any;
+
+        if(Cart.length >= 1){
+            Cart = Cart.map((element:any) => {
+                const str = (Object.keys(element)[0])
+                return {...getAboutTheFood(str), count:Object.values(element)[0]}
+            })
+            
+            value = Cart.map((element:any) => {
+                return element.price * element.count
+            })
+            const reducerCalc = (accumulator:any, currentValue:any) => accumulator + currentValue;
+            value = value.reduce(reducerCalc)
+            value = value.toFixed(2)
+        }else{
+            value = 0.00
+        }
+        
+        return value
+        
+    }
+
+
+
+    CalcTotal()
     return(
         <ModalContainer>
             <ModalItemsContainer>
@@ -114,18 +143,18 @@ const CartModal = () => {
                 return(
                     <CartItem 
                     amount={element[Object.keys(element)[0]]} 
-                    food={Object.keys(element)[0]}
+                    About={getAboutTheFood(Object.keys(element)[0])}
                     addItemCart={AddItemCart}
                     key={index}
                     />
                 )
-            })
+                })
             }
             
                 <ModalOptions>
                     <ModalCartTotal>
                         <span>Total Amount: </span>
-                        <span>14.50</span>
+                        <span>{CalcTotal()}</span>
                     </ModalCartTotal>
                     
                     <ModalCartOptions>
