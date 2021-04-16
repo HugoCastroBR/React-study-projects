@@ -9,7 +9,6 @@ export default function reducer(state:any, action:any){
             
             newState.Cart = []
             return newState
-
         case 'Cart-Add-Item':
             
             const newItem:Object = action.payload
@@ -18,7 +17,6 @@ export default function reducer(state:any, action:any){
             let toAdd:any[] = [];
             const amount:any = Object.values(newItem)[0]
             let indexRemover:number[] = []
-
             newState.Cart.forEach((element:any,index:number) => {
                 if(Object.keys(element)[0] === food){
                     toAdd = [true,index,food]
@@ -27,7 +25,6 @@ export default function reducer(state:any, action:any){
             if(toAdd[0]){
                 Cart = [...newState.Cart];
                 Cart[toAdd[1]][food] += amount/2// idk why this is working, but it is
-
                 if(Cart[toAdd[1]][food] <= 0){
                     
                     Cart.forEach((element:any,index:number) => {
@@ -39,7 +36,6 @@ export default function reducer(state:any, action:any){
                         
                     })
                 }
-
             }else{
                 if(Object.values(newItem)[0] > 0){
                     Cart = [...newState.Cart,newItem]
@@ -54,13 +50,9 @@ export default function reducer(state:any, action:any){
             
             newState.Cart = [...Cart]
             return newState
-
-
         case 'Toggle-Cart-Modal':
-
             newState.CartModal = !newState.CartModal
             return newState
-
         default:
             return newState
     }

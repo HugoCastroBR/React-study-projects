@@ -107,13 +107,13 @@ const ItemSelector:React.FC<IProps> = ({name,price,description="The best",addIte
             <AboutContainer>
                 <h4>{name}</h4>
                 <span>{description}</span>
-                <span>{price}</span>
+                <span>{price.toFixed(2)}</span>
             </AboutContainer>
             <ColumnDiv>
                 
                 <AmountContainer>
                     <span>Amount:</span>
-                    <input type="number" defaultValue={amount} onChange={
+                    <input type="text" defaultValue={amount} onChange={
                         (event) => {
                             if(isNaN(parseInt(event.target.value))){
                                 setAmount(0)

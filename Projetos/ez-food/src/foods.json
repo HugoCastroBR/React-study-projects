@@ -1,0 +1,28 @@
+[
+	{
+		"name": "Cheese Burger",
+		"price": 8,
+		"description": "Eita"
+	},
+	{
+		"name": "X Burger",
+		"price": 10
+	},
+	{
+		"name": "Egg Burger",
+		"price": 8
+	},
+	{
+		"name": "Gods Burger",
+		"price": 12,
+		"description": "God cry"
+	},
+	{
+		"name": "Double X Burger",
+		"price": 14
+	},
+	{
+		"name": "Double Gods Burger",
+		"price": 20
+	}
+]
