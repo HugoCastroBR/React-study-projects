@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { useCart } from './../contexts/CartContext';
-import CartItem from './../components/CartItem';
+import CartItem from './CartItem';
 import getAboutTheFood from './../assets/functions/getAboutThefood';
 
 

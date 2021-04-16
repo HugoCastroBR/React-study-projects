@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import { TFood } from "../ts/types";
+import { useCart } from './../contexts/CartContext';
 
 
 const ModalCartItem = styled.div`
@@ -91,6 +92,23 @@ interface Iprops{
 
 const CartItem:React.FC<Iprops> = ({amount,addItemCart,About}) => {
 
+    const { states } = useCart()
+
+    function Calc(target:number,event:any,item:any){
+        const CurrentAmount = Object.values(item)[0]
+        if(typeof(CurrentAmount) == 'number'){
+            const Result = (target - CurrentAmount )
+            if(isNaN(Result)){
+                addItemCart(About.name,event,(-CurrentAmount + 1))
+            }else{
+                
+                addItemCart(About.name,event,Result)
+            }
+            
+        }
+        
+    }
+
 	return(
         <ModalCartItem>
             <ItemMainOptions>
@@ -99,7 +117,10 @@ const CartItem:React.FC<Iprops> = ({amount,addItemCart,About}) => {
                     <span>{About.price.toFixed(2)}</span>
                     <input type="text" value={amount} onChange={
                         (event) => {
-                            console.log(event.target.value)
+                            const Cart = [...states.Cart]
+                            const ItemInCart = Cart.filter((element:any) => 
+                            Object.keys(element)[0] === About.name)[0]
+                            Calc(parseInt(event.target.value),event,ItemInCart)
                         }
                     }/>
                 </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
 
-
 const ItemSelectorStyle = styled.div`
 
     border-bottom: 1px solid gray;
@@ -100,6 +99,9 @@ interface IProps{
 
 const ItemSelector:React.FC<IProps> = ({name,price,description="The best",addItemCart}) => {
     const [amount, setAmount] = useState(1)
+
+
+
     return(
         <ItemSelectorStyle>
             <AboutContainer>
@@ -111,10 +113,14 @@ const ItemSelector:React.FC<IProps> = ({name,price,description="The best",addIte
                 
                 <AmountContainer>
                     <span>Amount:</span>
-                    <input type="text" defaultValue={amount} onChange={
+                    <input type="number" defaultValue={amount} onChange={
                         (event) => {
+                            if(isNaN(parseInt(event.target.value))){
+                                setAmount(0)
+                            }else{
+                                setAmount(parseInt(event.target.value))
+                            }
                             
-                            setAmount(parseInt(event.target.value))
                             
                         }
                     }/>

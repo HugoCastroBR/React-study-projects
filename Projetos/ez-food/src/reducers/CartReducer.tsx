@@ -1,3 +1,4 @@
+
 export default function reducer(state:any, action:any){
 
     let newState = {...state}
@@ -11,7 +12,7 @@ export default function reducer(state:any, action:any){
 
         case 'Cart-Add-Item':
             
-            const newItem = action.payload
+            const newItem:Object = action.payload
             const food:any = Object.keys(newItem)[0]
             let Cart:any[] = []
             let toAdd:any[] = [];
@@ -40,7 +41,10 @@ export default function reducer(state:any, action:any){
                 }
 
             }else{
-                Cart = [...newState.Cart,newItem]
+                if(Object.values(newItem)[0] > 0){
+                    Cart = [...newState.Cart,newItem]
+                }
+                
             }
             
             
@@ -51,7 +55,6 @@ export default function reducer(state:any, action:any){
             newState.Cart = [...Cart]
             return newState
 
-            
 
         case 'Toggle-Cart-Modal':
 
