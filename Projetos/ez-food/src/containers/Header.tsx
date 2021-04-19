@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
     color: white;
     align-items: center;
     z-index: 2;
-    overflow-x: hidden;
+    overflow: hidden;
     & button{
         width: 240px;
         height: 40px;
@@ -30,6 +30,7 @@ const HeaderContainer = styled.header`
         cursor: pointer;
         border: 1px solid white;
     }
+
 `
 
 const CartIconStyled = styled(CartIcon)`

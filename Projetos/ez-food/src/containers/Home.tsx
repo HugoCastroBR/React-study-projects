@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback, useEffect } from 'react';
 import Header from './Header';
 import { useCart } from './../contexts/CartContext';
 import CartModal from './CartModal';
 import styled from 'styled-components'
 import BurgerBackground from '../assets/img/BurgerBackground.jpg'
 import ItemSelector from './ItemSelector';
-import foods from '../ts/foods';
 import { TFood } from '../ts/types';
 
 
@@ -89,7 +88,6 @@ const ItemSelectContainer = styled.div`
 
 const Home = () => {
     const {dispatch,states} = useCart()
-
     
 
     function addItemCart (element:string,event:any,amount:number = 1){
@@ -98,6 +96,15 @@ const Home = () => {
         dispatch({type:"Cart-Add-Item", payload:JSON.parse(payload)})
     }
 
+    const getFoods = useCallback(async () => {
+        const res = await fetch('https://ez-food-hc-default-rtdb.firebaseio.com/foods.json')
+        const solved = await res.json()
+        dispatch({type:"Set-Foods",payload:solved})
+    },[dispatch])
+
+    
+
+    useEffect(() =>{ getFoods()},[getFoods])
 
     return(
         <Fragment>
@@ -116,7 +123,7 @@ const Home = () => {
 
 
                 <ItemSelectContainer>
-                    {foods.map((element:TFood,index:number) => {
+                    {states.foods?.map((element:TFood,index:number) => {
                         return <ItemSelector  
                         key={index}
                         {...element}

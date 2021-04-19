@@ -1,7 +1,5 @@
 import { TFood } from "./types";
-
-
-const foods:TFood[] = [
+let foods:TFood[] = [
     {
         name:"Cheese Burger",
         price: 8.00,
@@ -29,5 +27,12 @@ const foods:TFood[] = [
         price: 20.00
     },
 ]
+
+async function getFoods(){
+    const res = await fetch('https://ez-food-hc-default-rtdb.firebaseio.com/foods.json')
+    const solved = await res.json()
+    foods = solved
+}
+
 
 export default foods;

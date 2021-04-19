@@ -1,4 +1,4 @@
-[
+{"foods": [
 	{
 		"name": "Cheese Burger",
 		"price": 8,
@@ -26,3 +26,4 @@
 		"price": 20
 	}
 ]
+}

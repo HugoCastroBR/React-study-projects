@@ -53,6 +53,11 @@ export default function reducer(state:any, action:any){
         case 'Toggle-Cart-Modal':
             newState.CartModal = !newState.CartModal
             return newState
+
+        case 'Set-Foods':
+            newState.foods = action.payload
+            return newState
+
         default:
             return newState
     }

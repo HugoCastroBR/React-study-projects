@@ -1,4 +1,5 @@
 import React, { createContext,useContext, useReducer } from 'react'
+import { TFood } from '../ts/types';
 import reducer from './../reducers/CartReducer';
 
 
@@ -9,7 +10,7 @@ interface IStates{
     Cart: any[];
     Error: string;
     CartModal: boolean;
-    
+    foods?: TFood[];
 }
 interface Icontext{
     states: IStates,
@@ -22,7 +23,8 @@ export const CartContext = createContext<Icontext>({} as Icontext)
 const INITIAL_STATE = {
     Cart: [],
     Error: '',
-    CartModal: false
+    CartModal: false,
+    foods:[]
 }
 
 
