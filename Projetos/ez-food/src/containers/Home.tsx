@@ -26,7 +26,7 @@ const ImageContainer = styled.div`
     width: 120vw;
     margin-top: -10vh;
     height: calc(60vh - 80px);
-    background-color: red;
+    background-color: #9f343d;
     background-size: cover;
     background-position: center;
     background-image: url(${BurgerBackground});

@@ -79,7 +79,7 @@ function Poke(props) {
                 <PokeImageContainer>
                     <img src={props.poke.sprites && props.poke.sprites.front_default} alt="poke" />
                 </PokeImageContainer>
-                <h3>Luiz </h3>
+                <h3>{props.poke.name} </h3>
 
             </PokeStyle>
         );
