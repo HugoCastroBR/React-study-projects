@@ -12,8 +12,10 @@ const PageStyle = styled.div<IProps>`
     flex-direction: column;
     align-items: ${(props) => `${props.align}`};  
     justify-content: ${(props) => `${props.justify}`};  
-    width: 100vw;
-    height: 100vh;
+    width: calc(100vw - 15px);
+    min-height: 100vh;
+    background-color: #4d4d54;
+    overflow: hidden;
 `
 
 

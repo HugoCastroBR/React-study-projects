@@ -1,13 +1,19 @@
-import React,{Fragment} from 'react';
-import {useSelector } from 'react-redux';
-import { RootState } from '../reducers/CounterReducer'
+import React,{ Fragment } from 'react';
+import styled from 'styled-components';
+import useStore from './../hooks/useStore';
+
+
+const CounterText = styled.h1`
+    color: white;    
+`
+
 
 const ShowCounter = () => {
-    const state = useSelector((state:RootState) => state )
+    const { states } = useStore()
 
     return(
         <Fragment>
-            <h1> {state.counter} </h1>
+            <CounterText> {states.counter} </CounterText>
         </Fragment>
     )
 }
