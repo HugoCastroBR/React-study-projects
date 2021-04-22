@@ -1,8 +1,8 @@
 import { createStore } from 'redux'
-import appReducer from '../reducers/AppReducer';
+import appReducer, { counterSlice } from '../reducers/AppReducer';
 
 
-const store = createStore(appReducer)
+const store = createStore(counterSlice.reducer)
 
 
 export default store;

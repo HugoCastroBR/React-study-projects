@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { Fragment } from "react";
-import Header from "./Header";
+import Header from "../components/Header";
 import styled from "styled-components";
-import Page from "./page";
-import { LoginAction } from './../store/actions';
-import useStore from './../hooks/useStore';
+import Page from "../components/page";
+import { ClearLoginError, LoginAction } from '../store/actions';
+import useStore from '../hooks/useStore';
+import { Link } from 'react-router-dom';
 
 export const FormStyled = styled.form`
 	width: 360px;
@@ -61,11 +62,43 @@ export const FormStyled = styled.form`
     & span{
         color: red;
     }
+
+    & a{
+        padding-top: 8px;
+        color: white;
+        text-decoration: none;
+        height: 32px;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 120px;
+        border: 2px solid white;
+        background-color: transparent;
+        border-radius: 100px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.4s;
+    }
+
+    & a:hover{
+        transition: 0.4s;
+        background-color: white;
+        color: #4d4d54;
+    }
 `;
 
 
 const Login = () => {
-    const { dispatch } = useStore()
+    const { dispatch,states } = useStore()
+
+    const CleanLoginErrorMsg = useCallback(() => {
+		dispatch(ClearLoginError())
+	},[dispatch])
+
+	useEffect(() => {
+		CleanLoginErrorMsg()
+	},[CleanLoginErrorMsg])
+
 	return (
 		<Fragment>
 			<Header />
@@ -74,17 +107,18 @@ const Login = () => {
 					<input type="text" placeholder="Username" />
 					<input type="text" placeholder="Password" />
 					<div>
-						<button
+					    <Link 
                         onClick={(event) => {
                             event.preventDefault()
                             const user =  {
-                                name: "a",
-                                password: "asd"
+                                name: "Hugo",
+                                password: "1s23"
                             }
                             dispatch(LoginAction(user))
                         }}
-                        >Entrar</button> 
-						<button>Registrar</button>
+                        to="/login">Login</Link>
+
+						<Link to="/register">Registrar</Link>
                         
                         {/* 
                         if in login -> user and password true -> login
@@ -93,7 +127,7 @@ const Login = () => {
                         if in register -> one info incorrect -> error
                         */}
 					</div>
-                    <span>Error</span>
+                    {/* <span>{states?.errorMsg}</span> */}
 				</FormStyled>
 			</Page>
 		</Fragment>

@@ -22,4 +22,5 @@ export type TLoginUser = {
 export type Tstate = {
     counter: number
     user:TUser
+    errorMsg?: string
 }

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import React from 'react';
 import Counter from '../components/Counter';
-import Login from './../components/Login';
-import Register from './../components/Register';
+import Login from '../containers/Login';
+import Register from '../containers/Register';
 
 const Router:React.FC = ({children}) => {
     return(
