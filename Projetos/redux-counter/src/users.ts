@@ -10,3 +10,8 @@ export const users:TUser[] = [
         password: "123"
     }
 ]
+
+
+export const registerUser = (user:TUser) => {
+    users.push(user)
+}

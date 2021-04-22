@@ -1,7 +1,8 @@
 import React from 'react';
-import { Add, Remove } from './../store/actions';
+// import { Add, Remove } from './../store/actions';
 import useStore from './../hooks/useStore';
 import styled from 'styled-components';
+import { Add, Remove } from '../store/actions';
 
 
 
@@ -36,25 +37,35 @@ const ActionButtonContainer = styled.div`
 
 const ControllerCounter = () => {
 
-    
-    const { dispatch } = useStore()
+
+    const {dispatch} = useStore()
+
     return(
         <ActionButtonContainer>
             <ActionButton
             onClick={
-                () => { dispatch(Add(1)) }
+                (event) => {
+                    event.preventDefault()
+                    dispatch(Add(1))
+                }
             }
             > Add 1 </ActionButton>
 
             <ActionButton
             onClick={
-                () => { dispatch(Add(10)) }
+                (event) => {
+                    event.preventDefault()
+                    dispatch(Add(10))
+                }
             }
             > Add 10 </ActionButton>
 
             <ActionButton
             onClick={
-                () => { dispatch(Remove(1)) }
+                (event) => {
+                    event.preventDefault()
+                    dispatch(Remove(1))
+                }
             }
             > Remove 1 </ActionButton>
 

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useStore from '../hooks/useStore';
+import { Logout } from './../store/actions';
 
 
 const HeaderContainer = styled.header`
@@ -37,12 +39,15 @@ const Username = styled.h2`
 `
 
 const Header = () => {
+    const {states,dispatch} = useStore()
     return(
         <HeaderContainer>
             
-            <Link to="/login">Login</Link>
+            {states.auth.user.valid? <Link to="/">Counter</Link> : <Link to="/login">Login</Link>}
             <Username>User</Username>
-            <Link to="/">Logout</Link>
+            <Link to="/" onClick={
+                () => dispatch(Logout())
+            }>Logout</Link>
             
         </HeaderContainer>
     )

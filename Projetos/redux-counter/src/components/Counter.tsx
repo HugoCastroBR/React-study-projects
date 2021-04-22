@@ -3,7 +3,7 @@ import ControllerCounter from "../containers/ControllerCounter";
 import ShowCounter from "../containers/ShowCounter";
 import styled from "styled-components";
 import Page from "./page";
-import Header from "./Header";
+import Header from "../containers/Header";
 
 const CounterStyle = styled.div`
 	max-width: calc(1200px -  4vw);
