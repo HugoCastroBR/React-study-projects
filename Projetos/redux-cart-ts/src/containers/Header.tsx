@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import useCart from '../hooks/useCart';
+import { ToggleCart } from './../store/actions';
 
 
 const HeaderStyle = styled.header`
@@ -59,12 +61,17 @@ const HeaderStyle = styled.header`
 `
 
 const Header = () => {
+    const {cartDispatch } = useCart()
     return(
         <HeaderStyle>
             <h1>
                 ReduxCart
             </h1>
-            <button>
+            <button 
+            onClick={
+                () => cartDispatch(ToggleCart())
+            }
+            >
                 <h3>My Cart</h3>
                 <span>0</span>
             </button>

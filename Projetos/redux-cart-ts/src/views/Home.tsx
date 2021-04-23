@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
-import Header from '../components/Header';
+import Header from '../containers/Header';
 import Page from './../components/Page';
 import styled from 'styled-components';
-import Cart from '../components/Cart';
+import Cart from '../containers/Cart';
+import ProductsContainer from './../components/Products';
 
 
 const HomeContainer = styled.div`
@@ -20,6 +21,7 @@ const Home = () => {
             <Page>
                 <HomeContainer>
                     <Cart/>
+                    <ProductsContainer/>
                 </HomeContainer>
             </Page>
         </Fragment>

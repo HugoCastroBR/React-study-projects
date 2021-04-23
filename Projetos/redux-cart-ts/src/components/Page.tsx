@@ -8,6 +8,8 @@ const PageContainer = styled.main`
     height: auto;
     display: flex;
     justify-content: center;
+    min-height: calc(100vh - 80px);
+    background-color: #434345;
 `
 
 const Page:React.FC = ({children}) => {
