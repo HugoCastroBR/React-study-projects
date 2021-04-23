@@ -1,7 +1,10 @@
-import React from 'react'
 
-const App: React.FC = () => {
-  return <h1>Starting</h1>
+import Home from './../views/Home';
+
+function App() {
+	return (
+		<Home />
+	);
 }
 
-export default App
+export default App;
