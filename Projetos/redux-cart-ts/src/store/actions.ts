@@ -7,9 +7,6 @@ export const ToggleCart = () => {
     return cartActions.TOGGLE_CART()
 }
 
-export const AddToCart = (element:TProduct) => {
-
-    
-        return cartActions.INCREASE_PRODUCT(element)
-    
+export const AddToCart = (element:TProduct,amount:number = 1) => {
+    return cartActions.ADD_PRODUCT({element,amount})
 }

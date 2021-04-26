@@ -12,57 +12,50 @@ export const CartSlice = createSlice({
     name: 'CartSlice',
     initialState,
     reducers: {
-        ADD_PRODUCT(state, actions){
-            state.Cart.push(actions.payload)
-        },
-
-        INCREASE_PRODUCT(state,actions){
+        ADD_PRODUCT(state,actions){
             // actions = index
             let Index:any = null
-            const OldState = current(state.Cart)
+            const OldState = [...current(state.Cart)]
             OldState.forEach((element,index) => {
-                if(element.name === actions.payload.name){
-                    console.log("achou")
+                if(element.name === actions.payload.element.name){
                     Index = index
                 }
             })
-            
-            // if(Index !== null){
-            //     const item = {...state.Cart[Index]}
-            //     console.table(Object.entries(item))
-            //     if(item.count){
-            //         item.count ++
-            //         state.Cart[Index] = item
-            //     }else{
-            //         item.count = 1
-            //     }
-            // }else{
-            //     state.Cart.push(actions.payload)
-            // }
-
-            const newItem = {...actions.payload}
-            const OldItem = OldState[Index]
-        
-            if(Index){
-                if(Object.keys(OldItem).includes('count')){
-                    if(OldState[Index] !== undefined){
-                        let OldCount = OldState[Index].count
-                        if(OldCount === undefined){OldCount = 1}
-                        console.log(OldState[Index].count)
-                        OldState[Index].count += 1
+            let newItem = {...actions.payload.element}
+            let OldItem = OldState[Index]
+            let amount = actions.payload.amount
+            if(Index !== null){
+                if(OldItem.count){
+                    const count = OldItem.count
+                    newItem.count = count + amount
+                    if(newItem.count <= 0){
+                        console.log("a")
+                        OldState.splice(Index,1)
+                        state.Cart = OldState
+                    }else{
+                        OldState[Index] = newItem
+                        state.Cart = OldState
                     }
+                    
                 }else{
-                    newItem.count = 1
+                    console.log("Isso é um erro")
+                    newItem.count = amount
                     state.Cart.push(newItem)
                 }
+
             }else{
-                newItem.count = 1
-                state.Cart.push(newItem)
+                if(amount <= 0){
+                    
+                }else{
+                    newItem.count = amount
+                    state.Cart.push(newItem)
+                }
+                
             }
-            
-            console.log(OldState[Index],Index)
-            
-            
+
+            // OldState.push(newItem)
+            // console.log(OldState)
+            // state.Cart.push(actions.payload)
         },
 
         TOGGLE_CART(state){

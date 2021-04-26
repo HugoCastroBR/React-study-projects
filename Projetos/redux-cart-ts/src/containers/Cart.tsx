@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/CartItem';
+import { AddToCart } from '../store/actions';
+import { TProduct } from '../types/types';
 import useCart from './../hooks/useCart';
 
 
@@ -43,7 +45,12 @@ const CartContainer = styled.div`
 // `
 
 const Cart = () => {
-    const { cartStates } = useCart()
+    const { cartStates,cartDispatch } = useCart()
+
+    function HandlerChangeAmount(element:TProduct,amount:number = 1){
+        cartDispatch(AddToCart(element,amount))
+    }
+
     return(
         <Fragment>
             {
@@ -51,7 +58,7 @@ const Cart = () => {
             
             <CartContainer>
                 <h2>Your shopping Cart</h2>
-                {cartStates.Cart.map((element,index) => <CartItem {...element} key={index} />)}
+                {cartStates.Cart.map((element,index) => <CartItem {...element} key={index} HandlerChangeAmount={HandlerChangeAmount}/>)}
             </CartContainer>  
             } 
             {/* <ToggleCartBtn>Toggle Cart</ToggleCartBtn> */}

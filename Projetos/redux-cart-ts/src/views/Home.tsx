@@ -3,7 +3,7 @@ import Header from '../containers/Header';
 import Page from './../components/Page';
 import styled from 'styled-components';
 import Cart from '../containers/Cart';
-import ProductsContainer from './../components/Products';
+import ProductsContainer from '../containers/Products';
 
 
 const HomeContainer = styled.div`

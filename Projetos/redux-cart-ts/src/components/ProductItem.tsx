@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { TProduct } from '../types/types';
 
@@ -71,12 +71,14 @@ const ProductItemStyle = styled.div`
 
 
 type TPropsFunctionsOnly = {
-    HandlerAddToCart: (element:TProduct) => void
+    HandlerAddToCart: (element:TProduct,amount:number) => void
 }
 
 type TProps = TPropsFunctionsOnly & TProduct;
 
 const ProductItem:React.FC<TProps> = (props) => {
+
+    
     return (
         <ProductItemStyle>
             <div>
@@ -94,11 +96,11 @@ const ProductItem:React.FC<TProps> = (props) => {
                     
                     () => {
                         const item = {
-                            name: "Queijo",
-                            description: "Nice",
-                            price: 19.99
+                            name: props.name,
+                            description: props.description,
+                            price: props.price
                         }
-                        props.HandlerAddToCart(item)
+                        props.HandlerAddToCart(item,1)
                     }
                 }
                 >

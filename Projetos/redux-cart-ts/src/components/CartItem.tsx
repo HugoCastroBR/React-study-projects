@@ -70,13 +70,26 @@ const CartItemStyle = styled.div`
     }
 `
 
-const CartItem:React.FC<TProduct> = (props) => {
+type TProps = {
+    HandlerChangeAmount: (element:TProduct, amount:number) =>void
+} & TProduct
+
+const CartItem:React.FC<TProps> = (props) => {
+    const item = {
+        name: props.name,
+        description: props.description,
+        price: props.price
+    }
     return(
         <CartItemStyle>
             <section>
                 <h3>{props.name}</h3>
                 <div>
-                    <h4>R$ {props.price.toFixed(2)}</h4>
+                    <h4>R$ {
+                    props.count?
+                    (props.price * props.count).toFixed(2):
+                    props.price.toFixed(2)
+                    }</h4>
                     <span>(R$ {props.price.toFixed(2)}/item)</span>
                 </div>
             </section>
@@ -84,8 +97,13 @@ const CartItem:React.FC<TProduct> = (props) => {
             <section>
                 <p>{props?.count}</p>
                 <div>
-                    <button>-</button>
-                    <button>+</button>
+                    <button
+                    onClick={() => props.HandlerChangeAmount(item,-1)}
+                    >-</button>
+                    
+                    <button
+                    onClick={() => props.HandlerChangeAmount(item,1)}
+                    >+</button>
                 </div>
             </section>
         </CartItemStyle>

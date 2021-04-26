@@ -61,7 +61,27 @@ const HeaderStyle = styled.header`
 `
 
 const Header = () => {
-    const {cartDispatch } = useCart()
+    const {cartDispatch,cartStates } = useCart()
+
+
+    const Count = () => {
+        const numbers = cartStates.Cart.map(element => {
+            if(element.count){
+                return element.count
+            }else{
+                return 0
+            }
+        })
+        if(numbers.length){
+            return numbers.reduce((acc,cc) => {
+                return acc + cc
+            })
+        }else{
+            return 0
+        }
+        
+    }
+
     return(
         <HeaderStyle>
             <h1>
@@ -73,7 +93,7 @@ const Header = () => {
             }
             >
                 <h3>My Cart</h3>
-                <span>0</span>
+                <span>{Count()}</span>
             </button>
         </HeaderStyle>
     )
