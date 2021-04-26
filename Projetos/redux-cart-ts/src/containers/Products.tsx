@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { TProduct } from '../types/types';
 import ProductItem from '../components/ProductItem';
 import useCart from '../hooks/useCart';
 import { AddToCart } from '../store/actions';
+import useProducts from './../hooks/useProducts';
+import { getProducts, refreshCart } from './../store/fetchActions';
 
 
 const ProductsContainerStyle = styled.div`
@@ -38,35 +40,37 @@ const ProductsContainerStyle = styled.div`
 
 
 const ProductsContainer = () => {
-    const { cartDispatch } = useCart()
+    const { cartDispatch, cartStates } = useCart()
+    const { productsState, productsDispatch } = useProducts()
 
+    // const [products, setProducts] = useState([])
 
-    const [products, setProducts] = useState([])
-
-    const getProducts = async () => {
+    // const getProducts = async () => {
         
-        const url = 'https://60837f885dbd2c001757b7aa.mockapi.io/v1/products'
-        const res = await fetch(url)
-        let solved = await res.json()
-        solved = solved.map((element:any) => {
-            delete element.id
-            return element
-        })
-        setProducts(solved)
+    //     const url = 'https://60837f885dbd2c001757b7aa.mockapi.io/v1/products'
+    //     const res = await fetch(url)
+    //     let solved = await res.json()
+    //     solved = solved.map((element:any) => {
+    //         delete element.id
+    //         return element
+    //     })
+    //     setProducts(solved)
         
-    } 
+    // } 
 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => {getProducts()},[])
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {productsDispatch(getProducts())},[])
 
     function HandlerAddToCart(element:TProduct,amount:number = 1){
         cartDispatch(AddToCart(element,amount))
+
+
     }
 
     return(
         <ProductsContainerStyle>
-            {products?.map((element, index) => <ProductItem key={index} {...element} HandlerAddToCart={HandlerAddToCart}/>)}
+            {productsState.Products?.map((element, index) => <ProductItem key={index} {...element} HandlerAddToCart={HandlerAddToCart}/>)}
         </ProductsContainerStyle>
     )
 }

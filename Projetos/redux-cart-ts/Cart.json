@@ -1,0 +1,16 @@
+{
+	"Cart": [
+		{
+			"name": "Sabão",
+			"description": "Limpa tudo",
+			"price": 2,
+            "count": 1
+		},
+		{
+			"name": "Pão",
+			"description": "Bom",
+			"price": 0.25,
+            "count": 1
+		}
+	]
+}

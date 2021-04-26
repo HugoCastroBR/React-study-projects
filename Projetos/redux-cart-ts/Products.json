@@ -1,0 +1,15 @@
+{
+	"Products": [
+		{
+			"name": "Sabão",
+			"description": "Limpa tudo",
+			"price": 2
+		},
+		{
+			"name": "Pão",
+			"description": "Bom",
+			"price": 0.25
+		}
+	]
+	
+}

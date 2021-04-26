@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/CartItem';
 import { AddToCart } from '../store/actions';
+import { getCart } from '../store/fetchActions';
 import { TProduct } from '../types/types';
 import useCart from './../hooks/useCart';
+import ValidCart from './../functions/ValidCart';
+import { refreshCart } from './../store/fetchActions';
 
 
 
@@ -51,6 +54,15 @@ const Cart = () => {
         cartDispatch(AddToCart(element,amount))
     }
 
+    useEffect(() => {
+        cartDispatch(getCart())
+    },[])
+
+    useEffect(() => {
+        refreshCart(cartStates.Cart)
+    },[cartStates])
+
+    
     return(
         <Fragment>
             {
@@ -58,7 +70,7 @@ const Cart = () => {
             
             <CartContainer>
                 <h2>Your shopping Cart</h2>
-                {cartStates.Cart.map((element,index) => <CartItem {...element} key={index} HandlerChangeAmount={HandlerChangeAmount}/>)}
+                {ValidCart(cartStates.Cart).map((element,index) => <CartItem {...element} key={index} HandlerChangeAmount={HandlerChangeAmount}/>)}
             </CartContainer>  
             } 
             {/* <ToggleCartBtn>Toggle Cart</ToggleCartBtn> */}

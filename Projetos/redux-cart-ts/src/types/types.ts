@@ -13,3 +13,6 @@ export type TCartSlice = {
     CartVisible: boolean;
 }
 
+export type TProductsSlice = {
+    Products: TProduct[]
+}
